@@ -4,6 +4,8 @@ on:
   schedule:
     - cron: '0 18 * * *'  # 北京时间每天 2:00（UTC+8）
 
+  workflow_dispatch:
+
 jobs:
   checkin:
     runs-on: ubuntu-latest
