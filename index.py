@@ -1,6 +1,7 @@
+import os
 from ablesci import ablesci
 
-Cookie = "_identity-frontendXXXXXXX" # 替换自己在浏览器中的Cookie
+Cookie = os.environ.get("SITE_TOKEN")
 
 headers = {
     "Accept": "application/json, text/javascript, */*; q=0.01",
@@ -21,3 +22,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
