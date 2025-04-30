@@ -21,17 +21,7 @@ jobs:
         with:
           python-version: 3.9
 
-      - name: Cache pip dependencies
-        id: cache-pip-dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-requests
-          restore-keys: |
-            ${{ runner.os }}-pip-
-
       - name: Install requests
-        if: steps.cache-pip-dependencies.outputs.cache-hit != 'true'
         run: pip install requests
 
       - name: Run script
@@ -39,5 +29,3 @@ jobs:
           SITE_TOKEN: ${{ secrets.SITE_TOKEN }}  # 将 Secret 注入环境变量
         run: |
           python index.py
-
-  
