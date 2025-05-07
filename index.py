@@ -1,7 +1,10 @@
 import os
+import requests
 from ablesci import ablesci
 
+# 从环境变量获取 Cookie 和 Server酱的SCKEY
 Cookie = os.environ.get("SITE_TOKEN")
+SERVER_JANG_SCKEY = os.environ.get("SERVER_JANG_SCKEY")
 
 headers = {
     "Accept": "application/json, text/javascript, */*; q=0.01",
@@ -17,9 +20,31 @@ headers = {
     "X-Requested-With": "XMLHttpRequest"
 }
 
+def send_server_jiang(title, message):
+    """通过Server酱发送通知"""
+    if not SERVER_JANG_SCKEY:
+        print("未配置SERVER_JANG_SCKEY环境变量，无法发送通知")
+        return
+
+    url = f"https://sctapi.ftqq.com/{SERVER_JANG_SCKEY}.send"
+    data = {
+        "title": title,
+        "desp": message
+    }
+    try:
+        response = requests.post(url, data=data)
+        response.raise_for_status()  # 检查HTTP请求是否成功
+        print("Server酱通知发送成功")
+    except Exception as e:
+        print(f"Server酱通知发送失败: {str(e)}")
+
 def main():
-    ablesci(headers=headers)
+    try:
+        ablesci(headers=headers)
+    except Exception as e:
+        error_msg = f"ablesci执行失败，错误信息: {str(e)}"
+        print(error_msg)
+        send_server_jiang("Ablesci任务异常", error_msg)
 
 if __name__ == "__main__":
     main()
-
