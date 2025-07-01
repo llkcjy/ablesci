@@ -58,8 +58,8 @@ def checkin(cookie_str, server_chan_key):
     send_server_chan("VPN签到失败", "超过最大重试次数，签到失败", server_chan_key)
 
 if __name__ == "__main__":
-    COOKIE_STR = os.environ.get("COOKIE_LADDER_STR")
-    SERVER_CHAN_KEY = os.environ.get("SERVER_JANG_SCKEY")
+    COOKIE_STR = os.environ.get("COOKIE_STR")
+    SERVER_CHAN_KEY = os.environ.get("SERVER_CHAN_KEY")
     if not COOKIE_STR:
         print("[ERROR] COOKIE_STR 未设置")
     else:

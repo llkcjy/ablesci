@@ -23,6 +23,6 @@ jobs:
 
     - name: Run signladder script
       env:
-        COOKIE_STR: ${{ secrets.COOKIE_STR }}
-        SERVER_CHAN_KEY: ${{ secrets.SERVER_CHAN_KEY }}
+        COOKIE_STR: ${{ secrets.COOKIE_LADDER_STR }}
+        SERVER_CHAN_KEY: ${{ secrets.SERVER_JANG_SCKEY }}
       run: python signladder.py

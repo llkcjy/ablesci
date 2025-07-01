@@ -27,5 +27,6 @@ jobs:
       - name: Run script
         env:
           SITE_TOKEN: ${{ secrets.SITE_TOKEN }}  # 将 Secret 注入环境变量
+          SERVER_JANG_SCKEY: ${{ secrets.SERVER_JANG_SCKEY }}
         run: |
           python index.py
