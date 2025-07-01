@@ -40,6 +40,7 @@ def checkin(cookie_str, server_chan_key):
     for attempt in range(1, MAX_RETRY + 1):
         try:
             resp = requests.get(url, headers=headers, cookies=cookies, timeout=10)  # ✅ 正确为 GET
+            print("[DEBUG] Raw response:", resp.content)
             result = json.loads(resp.content)
             if result.get("code") == 0:
                 msg = u"[成功] 签到完成：" + result.get("message", "")
