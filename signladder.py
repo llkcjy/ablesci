@@ -48,9 +48,10 @@ def checkin(cookie_str, server_chan_key):
                 send_server_chan("VPN签到成功", msg, server_chan_key)
                 return
             else:
-                msg = u"[业务失败] " + result.get("message", "未知错误")
-                print(msg)
-                send_server_chan("VPN签到失败", msg, server_chan_key)
+                
+                # msg = u"[业务失败] " + result.get("message", "未知错误")
+                # print(msg)
+                # send_server_chan("VPN签到失败", msg, server_chan_key)
                 return
         except Exception as e:
             print("[第{}次尝试] 网络异常：{}".format(attempt, str(e)))
